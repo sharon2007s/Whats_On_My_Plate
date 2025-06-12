@@ -1,7 +1,6 @@
 package sharon.soicher.whatsonmyplate;
 
 import android.content.Context;
-import android.renderscript.ScriptGroup;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -19,7 +18,12 @@ public class Firebase_Helper {
 
 
 
-    private void adduserrealtimedatabase(UserProfile profile) {
+    /*
+         A function to insert user to the realtime database.
+        Input: profile
+        Return value: none
+     */
+    private void addUserRealtimedatabase(UserProfile profile) {
         DatabaseReference usersreference = database.getReference("USERS");
 
         String uid = firebase_auth.getCurrentUser().getUid();
@@ -38,12 +42,18 @@ public class Firebase_Helper {
                     Toast.makeText(context, "fail", Toast.LENGTH_SHORT).show();
                 });
     }
-
+//constructor
     public  Firebase_Helper(Context context){
         this.context=context;
         this.firebase_auth= FirebaseAuth.getInstance();
         this.database=FirebaseDatabase.getInstance();
     }
+
+    /*
+         A function to register a new user to the auth database.
+        Input: profile, email, password
+        Return value: user's id
+     */
     public CompletableFuture<String> Register(UserProfile profile, String email, String password)
     {
         CompletableFuture<String> future = new CompletableFuture<>();
@@ -53,7 +63,7 @@ public class Firebase_Helper {
                 FirebaseUser user = firebase_auth.getCurrentUser();
                 String uid = user.getUid();
                 future.complete(uid);
-                adduserrealtimedatabase(profile);
+                addUserRealtimedatabase(profile);
             }
             else {
                 Exception exception = task.getException();

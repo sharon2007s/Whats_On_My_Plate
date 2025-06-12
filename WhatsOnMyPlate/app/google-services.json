@@ -1,13 +1,14 @@
 {
   "project_info": {
-    "project_number": "319880217754",
-    "project_id": "wha-ts-on-my-plate",
-    "storage_bucket": "wha-ts-in-my-plate.firebasestorage.app"
+    "project_number": "188179342463",
+    "firebase_url": "https://what-s-on-my-plate-15316-default-rtdb.firebaseio.com",
+    "project_id": "what-s-on-my-plate-15316",
+    "storage_bucket": "what-s-on-my-plate-15316.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:319880217754:android:2c51bf7208f00753988b23",
+        "mobilesdk_app_id": "1:188179342463:android:29b1723a14eafb78224b4a",
         "android_client_info": {
           "package_name": "sharon.soicher.whatsonmyplate"
         }
@@ -15,7 +16,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAS0-ZqgW7tkTH2MUz7Ax068yllao8UckA"
+          "current_key": "AIzaSyD_KVivCeEgI-YULC538sEsiXCKwpdC8_g"
         }
       ],
       "services": {

@@ -22,7 +22,7 @@ public class NutritionAPI {
 
     // USDA FoodData Central API - free to use
     private static final String BASE_URL = "https://api.nal.usda.gov/fdc/v1/foods/search";
-    private static final String API_KEY = "DEMO_KEY"; // You can use DEMO_KEY for testing or get your own free API key
+    private static final String API_KEY = "8bFWTht0n4XQHdxePJzfBNpOiqMrHSUhPqIj4Gf0"; // You can use DEMO_KEY for testing or get your own free API key
 
     private final OkHttpClient client;
 

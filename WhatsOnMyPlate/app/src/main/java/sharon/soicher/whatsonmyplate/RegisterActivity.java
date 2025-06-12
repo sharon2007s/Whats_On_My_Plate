@@ -18,9 +18,7 @@ public class RegisterActivity extends AppCompatActivity {
     EditText firstNameET, lastNameET, ageET, genderET, weightET, heightET, emailET, passwordET;
     Button registerButton;
     CheckBox loseWeightCB, improveCompositionCB, beFitCB, healthCB, eatBetterCB, feelBetterCB;
-
-    FirebaseAuth mAuth;
-    DatabaseReference userRef;
+    
     private Firebase_Helper helper;
     private Utilities utilities;
 
@@ -115,46 +113,5 @@ public class RegisterActivity extends AppCompatActivity {
             utilities.make_snackbar(RegisterActivity.this,ex.getMessage());
             return null;
         });
-
-        // Register with Firebase Auth
-        /*mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        String userId = mAuth.getCurrentUser().getUid();
-
-                        // Collect goals
-                        StringBuilder goals = new StringBuilder();
-                        if (loseWeightCB.isChecked()) goals.append("Lose or gain weight, ");
-                        if (improveCompositionCB.isChecked()) goals.append("Improve body composition, ");
-                        if (beFitCB.isChecked()) goals.append("Become more fit, ");
-                        if (healthCB.isChecked()) goals.append("Improve overall health, ");
-                        if (eatBetterCB.isChecked()) goals.append("Eat better, ");
-                        if (feelBetterCB.isChecked()) goals.append("Feel better");
-
-                        // Upload user info
-                        trHashMap<String, Object> userMap = new HashMap<>();
-                        userMap.put("firstName", firstName);
-                        userMap.put("lastName", lastName);
-                        userMap.put("age", age);
-                        userMap.put("gender", gender);
-                        userMap.put("weight", weight);
-                        userMap.put("height", height);
-                        userMap.put("email", email);
-                        userMap.put("goals", goals.toString());
-
-                        userRef.child(userId).setValue(userMap)
-                                .addOnCompleteListener(saveTask -> {
-                                    if (saveTask.isSuccessful()) {
-                                        Toast.makeText(this, "Registered successfully", Toast.LENGTH_SHORT).show();
-                                        startActivity(new Intent(RegisterActivity.this, HomeActivity.class));
-                                        finish();
-                                    } else {
-                                        Toast.makeText(this, "Error saving data", Toast.LENGTH_SHORT).show();
-                                    }
-                                });
-                    } else {
-                        Toast.makeText(this, "Registration failed: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
-                    }
-                });*/
     }
 }
