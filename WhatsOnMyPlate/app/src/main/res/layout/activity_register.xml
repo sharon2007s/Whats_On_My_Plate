@@ -1,0 +1,92 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp"
+    android:background="#121212">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Input Fields -->
+        <EditText
+            android:id="@+id/register_first_name"
+            style="@style/RegisterInput"
+            android:hint="First Name"
+            android:minHeight="48dp" />
+
+        <EditText
+            android:id="@+id/register_last_name"
+            style="@style/RegisterInput"
+            android:hint="Last Name"
+            android:minHeight="48dp" />
+
+        <EditText
+            android:id="@+id/register_age"
+            style="@style/RegisterInput"
+            android:hint="Age"
+            android:inputType="number"
+            android:minHeight="48dp" />
+
+        <EditText
+            android:id="@+id/register_gender"
+            style="@style/RegisterInput"
+            android:hint="Gender"
+            android:minHeight="48dp" />
+
+        <EditText
+            android:id="@+id/register_weight"
+            style="@style/RegisterInput"
+            android:hint="Weight (kg)"
+            android:inputType="numberDecimal"
+            android:minHeight="48dp" />
+
+        <EditText
+            android:id="@+id/register_height"
+            style="@style/RegisterInput"
+            android:hint="Height (cm)"
+            android:inputType="numberDecimal"
+            android:minHeight="48dp" />
+
+        <EditText
+            android:id="@+id/register_email"
+            style="@style/RegisterInput"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:minHeight="48dp" />
+
+        <EditText
+            android:id="@+id/register_password"
+            style="@style/RegisterInput"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:minHeight="48dp" />
+
+        <!-- Goal Question -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="What are your primary goals?"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:layout_marginTop="16dp" />
+
+        <CheckBox android:id="@+id/goal_lose_weight" android:text="Lose or gain weight" style="@style/GoalCheckbox" />
+        <CheckBox android:id="@+id/goal_body_composition" android:text="Improve body composition" style="@style/GoalCheckbox" />
+        <CheckBox android:id="@+id/goal_be_fit" android:text="Become more fit" style="@style/GoalCheckbox" />
+        <CheckBox android:id="@+id/goal_health" android:text="Improve overall health" style="@style/GoalCheckbox" />
+        <CheckBox android:id="@+id/goal_eat_better" android:text="Eat better" style="@style/GoalCheckbox" />
+        <CheckBox android:id="@+id/goal_feel_better" android:text="Feel better" style="@style/GoalCheckbox" />
+
+        <!-- Register Button -->
+        <Button
+            android:id="@+id/register_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Register"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#00C853"
+            android:layout_marginTop="24dp" />
+    </LinearLayout>
+</ScrollView>

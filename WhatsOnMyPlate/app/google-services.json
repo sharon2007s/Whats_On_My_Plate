@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "319880217754",
+    "project_id": "wha-ts-on-my-plate",
+    "storage_bucket": "wha-ts-in-my-plate.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:319880217754:android:2c51bf7208f00753988b23",
+        "android_client_info": {
+          "package_name": "sharon.soicher.whatsonmyplate"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAS0-ZqgW7tkTH2MUz7Ax068yllao8UckA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

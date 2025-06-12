@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Custom style for input fields like name, age, email -->
+    <style name="RegisterInput">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:background">?android:attr/editTextBackground</item>
+        <item name="android:layout_marginTop">12dp</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:textColorHint">#AAAAAA</item>
+    </style>
+
+    <!-- Custom style for goal checkboxes -->
+    <style name="GoalCheckbox">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:layout_marginTop">8dp</item>
+    </style>
+</resources>

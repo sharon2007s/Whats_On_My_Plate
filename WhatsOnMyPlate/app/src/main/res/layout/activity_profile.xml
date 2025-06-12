@@ -1,0 +1,90 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black"> <!-- ✅ Black Background -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <EditText
+            android:id="@+id/name_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/darker_gray"
+            android:hint="Name"
+            android:minHeight="48dp"
+            android:textColor="@android:color/white" />
+
+        <EditText
+            android:id="@+id/age_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/darker_gray"
+            android:hint="Age"
+            android:minHeight="48dp"
+            android:textColor="@android:color/white" />
+
+        <EditText
+            android:id="@+id/height_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/darker_gray"
+            android:hint="Height"
+            android:minHeight="48dp"
+            android:textColor="@android:color/white" />
+
+        <EditText
+            android:id="@+id/weight_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/darker_gray"
+            android:hint="Weight"
+            android:minHeight="48dp"
+            android:textColor="@android:color/white" />
+
+        <Spinner
+            android:id="@+id/gender_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp" />
+
+        <Spinner
+            android:id="@+id/goals_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp" />
+
+        <Spinner
+            android:id="@+id/diet_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp" />
+
+        <Switch
+            android:id="@+id/unit_switch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:text="Use Metric Units"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/save_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Save"
+            android:backgroundTint="#00C853"
+            android:textColor="#FFFFFF"/>
+
+        <Button
+            android:id="@+id/recalculate_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Recalculate Calorie Budget"
+            android:backgroundTint="#00C853"
+            android:textColor="#FFFFFF"/>
+    </LinearLayout>
+</ScrollView>
