@@ -107,7 +107,7 @@ public class RegisterActivity extends AppCompatActivity {
             utilities.make_snackbar(RegisterActivity.this, "succeed");
 
             Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
-            intent.putExtra("uid", uid);
+            intent.putExtra("Uid", uid);
             startActivity(intent);
         }).exceptionally(ex -> {
             utilities.make_snackbar(RegisterActivity.this,ex.getMessage());
