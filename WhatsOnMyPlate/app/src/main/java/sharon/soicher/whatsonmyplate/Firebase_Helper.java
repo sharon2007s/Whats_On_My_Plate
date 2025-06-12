@@ -73,4 +73,28 @@ public class Firebase_Helper {
         });
                 return future;
     }
+
+    /*
+       A function to login user.
+       Input: email, password
+       Return value: user's id
+    */
+    public CompletableFuture<String> login(String email, String password) {
+        CompletableFuture<String> future = new CompletableFuture<>();
+
+        firebase_auth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        FirebaseUser user = firebase_auth.getCurrentUser();
+                        String uid = user.getUid();
+                        future.complete(uid);
+                    } else {
+                        Exception exception = task.getException();
+                        String errorMessage = "Login failed: " + (exception != null ? exception.getMessage() : "Unknown error");
+                        future.completeExceptionally(new Exception(errorMessage));
+                    }
+                });
+
+        return future;
+    }
 }

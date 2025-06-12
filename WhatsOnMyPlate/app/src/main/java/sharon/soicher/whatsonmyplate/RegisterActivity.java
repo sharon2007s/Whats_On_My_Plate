@@ -18,7 +18,7 @@ public class RegisterActivity extends AppCompatActivity {
     EditText firstNameET, lastNameET, ageET, genderET, weightET, heightET, emailET, passwordET;
     Button registerButton;
     CheckBox loseWeightCB, improveCompositionCB, beFitCB, healthCB, eatBetterCB, feelBetterCB;
-    
+
     private Firebase_Helper helper;
     private Utilities utilities;
 

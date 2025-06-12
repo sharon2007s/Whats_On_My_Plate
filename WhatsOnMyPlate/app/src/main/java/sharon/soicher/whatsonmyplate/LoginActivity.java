@@ -14,26 +14,36 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.concurrent.CompletableFuture;
+
 public class LoginActivity extends AppCompatActivity {
 
     private EditText emailEditText, passwordEditText;
     private Button loginButton;
     private TextView registerTextView;
     private ProgressBar progressBar;
-    private FirebaseAuth mAuth;
+    
+    private Firebase_Helper helper;
+    private Utilities utilities;
+
+    private void init() {
+        emailEditText = findViewById(R.id.login_email);
+        passwordEditText = findViewById(R.id.login_password);
+        loginButton = findViewById(R.id.login_button);
+        registerTextView = findViewById(R.id.login_register_text);
+        progressBar = findViewById(R.id.login_progress_bar);
+        
+        helper = new Firebase_Helper(LoginActivity.this);
+        utilities = new Utilities();
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        mAuth = FirebaseAuth.getInstance();
-
-        emailEditText = findViewById(R.id.login_email);
-        passwordEditText = findViewById(R.id.login_password);
-        loginButton = findViewById(R.id.login_button);
-        registerTextView = findViewById(R.id.login_register_text);
-        progressBar = findViewById(R.id.login_progress_bar);
+        init();
 
         loginButton.setOnClickListener(v -> loginUser());
 
@@ -58,16 +68,17 @@ public class LoginActivity extends AppCompatActivity {
 
         progressBar.setVisibility(View.VISIBLE);
 
-        mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(task -> {
-                    progressBar.setVisibility(View.GONE);
-                    if (task.isSuccessful()) {
-                        Toast.makeText(LoginActivity.this, "Logged in successfully", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                        finish();
-                    } else {
-                        Toast.makeText(LoginActivity.this, "Error: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
-                    }
-                });
+        CompletableFuture<String> login_future = helper.login(email, password);
+
+        login_future.thenAccept(uid -> {
+            utilities.make_snackbar(LoginActivity.this, "success");
+
+            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+            intent.putExtra("Uid", uid);
+            startActivity(intent);
+        }).exceptionally(ex -> {
+            utilities.make_snackbar(LoginActivity.this, ex.getMessage());
+            return null;
+        });
     }
 }
