@@ -16,10 +16,10 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.concurrent.CompletableFuture;
 
 public class Firebase_Helper {
-    private Context context;
+    private static Context context;
 
     private FirebaseAuth firebase_auth;
-    private FirebaseDatabase database;
+    private static FirebaseDatabase database;
 
 
 
@@ -126,5 +126,18 @@ public class Firebase_Helper {
         });
 
         return future;
+    }
+    public static void addMealFromAPI(String userId, NutritionAPI.FoodNutritionData foodData) {
+        DatabaseReference mealsReference = database.getReference("USERS").child(userId).child("MEALS");
+
+        String mealId = mealsReference.push().getKey(); // Generate unique meal ID
+        if (mealId != null) {
+            MealEntry mealEntry = new MealEntry(foodData.getName(), (int) foodData.getWeightInGrams(),
+                    (int) foodData.getCalories(), (int) foodData.getProtein(),
+                    (int) foodData.getFat(), (int) foodData.getCarbs());
+            mealsReference.child(mealId).setValue(mealEntry)
+                    .addOnSuccessListener(aVoid -> Toast.makeText(context, "Meal saved!", Toast.LENGTH_SHORT).show())
+                    .addOnFailureListener(e -> Toast.makeText(context, "Error saving meal", Toast.LENGTH_SHORT).show());
+        }
     }
 }

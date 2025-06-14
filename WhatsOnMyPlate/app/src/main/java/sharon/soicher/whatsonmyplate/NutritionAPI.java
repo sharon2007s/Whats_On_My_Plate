@@ -109,7 +109,7 @@ public class NutritionAPI {
                         }
 
                         // Match nutrients by name
-                        if (nutrientName.contains("Energy") && (nutrientName.contains("kcal") || nutrientName.contains("KCAL"))) {
+                        if (nutrientName.contains("Energy") ) {
                             caloriesPer100g = value;
                         } else if (nutrientName.contains("Protein")) {
                             proteinPer100g = value;

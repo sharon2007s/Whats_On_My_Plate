@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class FoodEntryActivity extends AppCompatActivity {
 
     // Views
@@ -60,6 +62,8 @@ public class FoodEntryActivity extends AppCompatActivity {
         btnSaveFood.setOnClickListener(v -> saveFoodEntry());
     }
 
+    private NutritionAPI.FoodNutritionData lastFoodNutritionData = null;
+
     private void fetchNutritionData() {
         String foodName = etFoodName.getText().toString().trim();
         String portionSizeStr = etPortionSize.getText().toString().trim();
@@ -85,6 +89,10 @@ public class FoodEntryActivity extends AppCompatActivity {
         progressBar.setVisibility(View.VISIBLE);
         tvNutritionInfo.setVisibility(View.GONE);
 
+        NutritionAPI nutritionAPI = new NutritionAPI();
+        final String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+
         nutritionAPI.getNutritionData(foodName, portionSize, new NutritionAPI.NutritionCallback() {
             @Override
             public void onSuccess(NutritionAPI.FoodNutritionData foodData) {
@@ -92,6 +100,9 @@ public class FoodEntryActivity extends AppCompatActivity {
                     progressBar.setVisibility(View.GONE);
                     tvNutritionInfo.setVisibility(View.VISIBLE);
                     tvNutritionInfo.setText(foodData.toString());
+
+                    Firebase_Helper.addMealFromAPI(userId, foodData);
+                    Toast.makeText(FoodEntryActivity.this, "Meal data saved automatic",Toast.LENGTH_SHORT).show();
                 });
             }
 
