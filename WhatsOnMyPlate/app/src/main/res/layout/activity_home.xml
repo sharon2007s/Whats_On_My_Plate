@@ -136,7 +136,22 @@
                     android:text="Water: 1.5 L"
                     android:backgroundTint="#00C853"
                     android:textColor="#FFFFFF" />
+
+                <Button
+                    android:id="@+id/notification_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Set Notification"
+                    android:backgroundTint="#00C853"
+                    android:textColor="#FFFFFF" />
             </LinearLayout>
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Button" />
         </LinearLayout>
 
         <!-- Bottom Section: Additional Actions -->
@@ -170,10 +185,10 @@
             <Button
                 android:id="@+id/weigh_in_button"
                 android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="Weigh In"
                 android:backgroundTint="#00C853"
+                android:text="Weigh In"
                 android:textColor="#FFFFFF" />
         </LinearLayout>
 

@@ -19,7 +19,7 @@ public class HomeActivity extends AppCompatActivity {
 
     // Declare buttons for meal entries and health trackers
     private Button breakfastButton, lunchButton, dinnerButton, snacksButton;
-    private Button exerciseButton, stepsButton, waterButton;
+    private Button exerciseButton, stepsButton, waterButton, notificationButton;
     private Button dailyAdviceButton, dailyAnalysisButton, weighInButton;
 
     private Firebase_Helper helper;
@@ -36,6 +36,7 @@ public class HomeActivity extends AppCompatActivity {
         exerciseButton = findViewById(R.id.exercise_button);
         stepsButton = findViewById(R.id.steps_button);
         waterButton = findViewById(R.id.water_button);
+        notificationButton = findViewById(R.id.notification_button);
         dailyAdviceButton = findViewById(R.id.daily_advice_button);
         dailyAnalysisButton = findViewById(R.id.daily_analysis_button);
         weighInButton = findViewById(R.id.weigh_in_button);
@@ -73,6 +74,7 @@ public class HomeActivity extends AppCompatActivity {
         exerciseButton.setOnClickListener(v -> startActivity(new Intent(HomeActivity.this, ExerciseTrackerActivity.class)));
         stepsButton.setOnClickListener(v -> startActivity(new Intent(HomeActivity.this, StepsTrackerActivity.class)));
         waterButton.setOnClickListener(v -> startActivity(new Intent(HomeActivity.this, WaterTrackerActivity.class)));
+        notificationButton.setOnClickListener(v -> startActivity(new Intent(HomeActivity.this,ScheduleNotificationActivity.class)));
         //dailyAdviceButton.setOnClickListener(v -> startActivity(new Intent(HomeActivity.this, DailyAdviceActivity.class)));
         //dailyAnalysisButton.setOnClickListener(v -> startActivity(new Intent(HomeActivity.this, AnalysisActivity.class)));
        // weighInButton.setOnClickListener(v -> startActivity(new Intent(HomeActivity.this, WeighInActivity.class)));

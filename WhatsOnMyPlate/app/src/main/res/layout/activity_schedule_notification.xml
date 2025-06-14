@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Title Field -->
+        <EditText
+            android:id="@+id/etTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Notification Title"
+            android:minHeight="48dp" />
+
+        <!-- Location Field -->
+        <EditText
+            android:id="@+id/etLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Location"
+            android:minHeight="48dp" />
+
+        <!-- Start Time Field -->
+        <EditText
+            android:id="@+id/etStartTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Start Time (HH:mm)"
+            android:minHeight="48dp" />
+
+        <!-- End Time Field -->
+        <EditText
+            android:id="@+id/etEndTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="End Time (HH:mm)"
+            android:minHeight="48dp" />
+
+        <!-- Date Field -->
+        <EditText
+            android:id="@+id/etDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Date (yyyy-MM-dd)"
+            android:minHeight="48dp" />
+
+        <!-- Schedule Button -->
+        <Button
+            android:id="@+id/btnScheduleNotification"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Schedule Notification"
+            android:layout_marginTop="16dp" />
+
+    </LinearLayout>
+</ScrollView>
