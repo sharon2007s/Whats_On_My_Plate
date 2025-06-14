@@ -2,9 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-    <!-- AndroidManifest.xml -->
-    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"/>
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" /> <!-- AndroidManifest.xml -->
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
 
     <application
         android:allowBackup="true"
@@ -16,8 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WhatsOnMyPlate"
         tools:targetApi="31">
-
-
+        <activity
+            android:name=".BluetoothShareActivity"
+            android:exported="false" />
         <activity
             android:name=".StepsTrackerActivity"
             android:exported="false" />
@@ -49,6 +49,7 @@
             </intent-filter>
         </activity> <!-- Add your BroadcastReceiver here -->
         <receiver android:name=".AlarmReceiver" />
+
         <activity android:name=".ScheduleNotificationActivity" />
     </application>
 

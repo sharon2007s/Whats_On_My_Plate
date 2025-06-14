@@ -106,10 +106,10 @@
             android:layout_marginBottom="16dp"/>
 
         <Button
-            android:id="@+id/btn_search_food"
+            android:id="@+id/btnSnapshot"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Search Food"
+            android:text="Take Snapshot"
             android:backgroundTint="#00C853"
             android:textColor="#FFFFFF"
             android:layout_marginBottom="16dp"/>
