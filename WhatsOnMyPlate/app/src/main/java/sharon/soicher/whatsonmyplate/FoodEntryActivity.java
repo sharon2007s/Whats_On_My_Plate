@@ -24,6 +24,20 @@ import android.provider.MediaStore.Images;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
+import android.os.Bundle;
+import android.speech.RecognizerIntent;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.ArrayList;
+import java.util.Locale;
+
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -40,10 +54,13 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class FoodEntryActivity extends AppCompatActivity {
 
+    private static final int REQUEST_CODE_SPEECH_INPUT_FOOD = 101;
+    private static final int REQUEST_CODE_SPEECH_INPUT_PORTION = 102;
+
     // Views
     private Spinner spinnerMealType;
     private EditText etFoodName, etPortionSize;
-    private Button btnManualEntry, btnScanFood, btnSnapshot, btnSaveFood;
+    private Button btnMicFood, btnMicPortion, btnManualEntry, btnScanFood, btnSnapshot, btnSaveFood;
     private TextView tvNutritionInfo;
     private ProgressBar progressBar;
 
@@ -60,6 +77,8 @@ public class FoodEntryActivity extends AppCompatActivity {
         spinnerMealType = findViewById(R.id.spinner_meal_type);
         etFoodName = findViewById(R.id.et_food_name);
         etPortionSize = findViewById(R.id.et_portion_size);
+        btnMicFood = findViewById(R.id.btnVoiceFoodName);
+        btnMicPortion = findViewById(R.id.btnVoicePortionSize);
         btnManualEntry = findViewById(R.id.btn_manual_entry);
         btnScanFood = findViewById(R.id.btn_scan_food);
         btnSnapshot = findViewById(R.id.btnSnapshot);
@@ -82,6 +101,10 @@ public class FoodEntryActivity extends AppCompatActivity {
         mealAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerMealType.setAdapter(mealAdapter);
 
+        btnMicFood.setOnClickListener(view -> startVoiceInputFood());
+        btnMicPortion.setOnClickListener(view -> startVoiceInputPortion());
+
+
         // Handle "Add Food Manually"
         btnManualEntry.setOnClickListener(v -> fetchNutritionData());
 
@@ -94,6 +117,64 @@ public class FoodEntryActivity extends AppCompatActivity {
         // Save Food Entry button
         btnSaveFood.setOnClickListener(v -> saveFoodEntry());
     }
+
+    // Launch the voice recognition intent
+    private void startVoiceInputFood() {
+        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        // Use free form speech models for natural input
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        // Configure language of the recognizer (default to system locale)
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+        // Optional prompt to help the user
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Speak now...");
+
+        try {
+            startActivityForResult(intent, REQUEST_CODE_SPEECH_INPUT_FOOD);
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(this, "Voice recognition is not supported on this device.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void startVoiceInputPortion() {
+        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        // Use free form speech models for natural input
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        // Configure language of the recognizer (default to system locale)
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+        // Optional prompt to help the user
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Speak now...");
+
+        try {
+            startActivityForResult(intent, REQUEST_CODE_SPEECH_INPUT_PORTION);
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(this, "Voice recognition is not supported on this device.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK && data != null) {
+            ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+            if (result != null && !result.isEmpty()) {
+                String recognizedText = result.get(0);
+
+                // Update the corresponding EditText based on request code
+                if (requestCode == REQUEST_CODE_SPEECH_INPUT_FOOD) {
+                    etFoodName.setText(recognizedText);
+                } else if (requestCode == REQUEST_CODE_SPEECH_INPUT_PORTION) {
+                    etPortionSize.setText(recognizedText);
+                }
+            } else {
+                Toast.makeText(this, "No speech recognized, please try again.", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+
+     
 
 
     private NutritionAPI.FoodNutritionData lastFoodNutritionData = null;

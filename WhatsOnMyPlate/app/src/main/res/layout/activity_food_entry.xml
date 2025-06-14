@@ -32,37 +32,86 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Food Name:"
+            android:layout_gravity="left"
             android:textColor="#FFFFFF"
             android:textSize="16sp"/>
 
-        <EditText
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="12dp">
+
+
+    <EditText
             android:id="@+id/et_food_name"
-            android:layout_width="match_parent"
+            android:layout_width="247dp"
             android:layout_height="wrap_content"
-            android:hint="Enter food name (e.g., Apple, Chicken)"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#AAAAAA"
-            android:padding="12dp"
+            android:layout_gravity="left"
             android:layout_marginBottom="12dp"
-            android:inputType="text"/>
+            android:hint="Enter food name (e.g., Apple, Chicken)"
+            android:inputType="text"
+            android:padding="12dp"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#AAAAAA" />
+
+        <Button
+            android:id="@+id/btnVoiceFoodName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:backgroundTint="#00C853"
+            android:padding="8dp"
+            android:text="🎤"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Portion Size (grams):"
             android:textColor="#FFFFFF"
-            android:textSize="16sp"/>
+            android:layout_gravity="left"
+            android:textSize="16sp" />
 
-        <EditText
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="16dp">
+
+
+    <EditText
             android:id="@+id/et_portion_size"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Enter portion size (e.g., 100)"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#AAAAAA"
-            android:padding="12dp"
+            android:layout_gravity="left"
             android:layout_marginBottom="16dp"
-            android:inputType="numberDecimal"/>
+            android:hint="Enter portion size (e.g., 100)"
+            android:inputType="numberDecimal"
+            android:padding="12dp"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#AAAAAA" />
+
+        <Button
+            android:id="@+id/btnVoicePortionSize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🎤"
+            android:padding="8dp"
+            android:textSize="16sp"
+            android:backgroundTint="#00C853"
+            android:textColor="#FFFFFF"
+            android:layout_marginStart="8dp"/>
+
+    </LinearLayout>
+
 
         <!-- Manual Entry Button -->
         <Button
@@ -123,5 +172,6 @@
             android:backgroundTint="#00C853"
             android:textColor="#FFFFFF"
             android:layout_marginBottom="16dp"/>
+
     </LinearLayout>
 </ScrollView>
