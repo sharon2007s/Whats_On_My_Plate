@@ -17,6 +17,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class StepsTrackerActivity extends AppCompatActivity {
 
     private EditText etStepCount, etDailyGoal;
@@ -41,7 +43,7 @@ public class StepsTrackerActivity extends AppCompatActivity {
         etStepCount = findViewById(R.id.et_step_count);
         etDailyGoal = findViewById(R.id.et_daily_goal);
         btnManualEntry = findViewById(R.id.btn_manual_entry);
-        btnGoogleFit = findViewById(R.id.btn_google_fit);
+        //btnGoogleFit = findViewById(R.id.btn_google_fit);
         btnSaveSteps = findViewById(R.id.btn_save_steps);
         tvStepHistory = findViewById(R.id.tv_step_history);
         tvCurrentGoal = findViewById(R.id.tv_current_goal);
@@ -51,12 +53,11 @@ public class StepsTrackerActivity extends AppCompatActivity {
 
         // Button Listeners
         btnManualEntry.setOnClickListener(v -> manuallyAddSteps());
-        btnGoogleFit.setOnClickListener(v -> fetchStepsFromGoogleFit());
+        // btnGoogleFit.setOnClickListener(v -> fetchStepsFromGoogleFit());
         btnSaveSteps.setOnClickListener(v -> saveSteps());
 
-        // Create notification channel and schedule reminders
-        createNotificationChannel();
-        scheduleWalkingReminder();
+
+
     }
 
     // Manual entry: read steps from EditText and update history/currentSteps
@@ -78,15 +79,15 @@ public class StepsTrackerActivity extends AppCompatActivity {
 
     // This method simulates fetching steps from Google Fit.
     // Replace its internals with actual Google Fit API calls.
-    private void fetchStepsFromGoogleFit() {
-        // TODO: Integrate with Google Fit API here.
-        // For now we simulate a fetch:
-        int simulatedSteps = 1500;
-        currentSteps += simulatedSteps;
-        stepHistory += simulatedSteps + " steps (Google Fit)\n";
-        updateUI();
-        Toast.makeText(this, "Fetched " + simulatedSteps + " steps from Google Fit", Toast.LENGTH_SHORT).show();
-    }
+//    private void fetchStepsFromGoogleFit() {
+//        // TODO: Integrate with Google Fit API here.
+//        // For now we simulate a fetch:
+//        int simulatedSteps = 1500;
+//        currentSteps += simulatedSteps;
+//        stepHistory += simulatedSteps + " steps (Google Fit)\n";
+//        updateUI();
+//        Toast.makeText(this, "Fetched " + simulatedSteps + " steps from Google Fit", Toast.LENGTH_SHORT).show();
+//    }
 
     // Update the history and current goal text
     private void updateUI() {
@@ -96,49 +97,29 @@ public class StepsTrackerActivity extends AppCompatActivity {
 
     // Save steps and update Home Page (simulate by a Toast and finishing activity)
     private void saveSteps() {
-        // Optionally, you can persist the data (e.g., in Firebase or SharedPreferences)
-        Toast.makeText(this, "Steps saved & updated on Home Page!", Toast.LENGTH_SHORT).show();
-        finish();
-    }
+        // Here, you may want to update the daily goal from the EditText if the user has changed it.
+        String dailyGoalStr = etDailyGoal.getText().toString().trim();
+        if (!dailyGoalStr.isEmpty()) {
+            dailyGoal = Integer.parseInt(dailyGoalStr);
+        }
 
+        // Obtain the user ID from FirebaseAuth
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        // Save or update the steps entry in Firebase
+        Firebase_Helper.addSteps(userId, dailyGoal, currentSteps);
+
+        Toast.makeText(this, "Steps saved & updated on Home Page!", Toast.LENGTH_SHORT).show();
+        finish(); // Return to Home Page after saving
+    }
 
     // ---------------------------
     // Notification & Reminder Code
     // ---------------------------
 
-    // Schedules a repeating reminder using AlarmManager
-    private void scheduleWalkingReminder() {
-        Intent intent = new Intent(this, ReminderReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_IMMUTABLE);
 
-        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        // First reminder triggered after REMINDER_INTERVAL from now.
-        long triggerAtMillis = SystemClock.elapsedRealtime() + REMINDER_INTERVAL;
-        alarmManager.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                triggerAtMillis, REMINDER_INTERVAL, pendingIntent);
-    }
 
-    // Creates a notification channel for Android O and above.
-    private void createNotificationChannel() {
-        NotificationChannel channel = new NotificationChannel(CHANNEL_ID,
-                "Walking Reminder",
-                NotificationManager.IMPORTANCE_DEFAULT);
-        channel.setDescription("Reminds you to walk and reach your step goal");
-        NotificationManager notificationManager = getSystemService(NotificationManager.class);
-        notificationManager.createNotificationChannel(channel);
-    }
 
-    // Method to send a walking reminder notification
-    public static void sendWalkingReminder(Context context) {
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
-                .setSmallIcon(R.drawable.logoapp) // Replace with your drawable icon
-                .setContentTitle("Time to Walk!")
-                .setContentText("Keep moving to reach your daily step goal.")
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                .setAutoCancel(true);
 
-        NotificationManager notificationManager =
-                (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.notify(NOTIFICATION_ID, builder.build());
-    }
+
 }

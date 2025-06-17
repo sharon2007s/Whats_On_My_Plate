@@ -80,7 +80,7 @@ public class FoodEntryActivity extends AppCompatActivity {
         btnMicFood = findViewById(R.id.btnVoiceFoodName);
         btnMicPortion = findViewById(R.id.btnVoicePortionSize);
         btnManualEntry = findViewById(R.id.btn_manual_entry);
-        btnScanFood = findViewById(R.id.btn_scan_food);
+        //  btnScanFood = findViewById(R.id.btn_scan_food);
         btnSnapshot = findViewById(R.id.btnSnapshot);
         btnSaveFood = findViewById(R.id.btn_save_food);
         tvNutritionInfo = findViewById(R.id.tv_nutrition_info);
@@ -109,7 +109,7 @@ public class FoodEntryActivity extends AppCompatActivity {
         btnManualEntry.setOnClickListener(v -> fetchNutritionData());
 
         // Barcode Scan functionality (placeholder)
-        btnScanFood.setOnClickListener(v -> Toast.makeText(FoodEntryActivity.this, "Food scan feature coming soon.", Toast.LENGTH_SHORT).show());
+        // btnScanFood.setOnClickListener(v -> Toast.makeText(FoodEntryActivity.this, "Food scan feature coming soon.", Toast.LENGTH_SHORT).show());
 
         // Search Food functionality (placeholder)
         btnSnapshot.setOnClickListener(v -> takeSnapshot());
@@ -174,7 +174,7 @@ public class FoodEntryActivity extends AppCompatActivity {
     }
 
 
-     
+
 
 
     private NutritionAPI.FoodNutritionData lastFoodNutritionData = null;

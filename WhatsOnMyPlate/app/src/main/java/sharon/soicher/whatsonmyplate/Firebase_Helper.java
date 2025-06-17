@@ -140,4 +140,54 @@ public class Firebase_Helper {
                     .addOnFailureListener(e -> Toast.makeText(context, "Error saving meal", Toast.LENGTH_SHORT).show());
         }
     }
+    public static void addExercise(String userId, String exerciseType, int durationTime, int caloriesBurned) {
+        // Get the database reference for the user's EXERCISE node
+        DatabaseReference exerciseReference = database.getReference("USERS")
+                .child(userId)
+                .child("EXERCISE");
+
+        // Generate a new unique key for the exercise
+        String exerciseId = exerciseReference.push().getKey();
+
+        if (exerciseId != null) {
+            // Construct an ExerciseEntry object (you may need to create this class)
+            ExerciseEntry exerciseEntry = new ExerciseEntry(exerciseType, durationTime, caloriesBurned);
+
+            // Save the exercise entry in the database
+            exerciseReference.child(exerciseId).setValue(exerciseEntry)
+                    .addOnSuccessListener(aVoid ->
+                            Toast.makeText(context, "Exercise logged successfully!", Toast.LENGTH_SHORT).show())
+                    .addOnFailureListener(e ->
+                            Toast.makeText(context, "Error logging exercise.", Toast.LENGTH_SHORT).show());
+        }
+    }
+    public static void addSteps(String userId, int stepsGoal, int currentSteps) {
+        // reference to USERS -> <userId> -> STEPS
+        DatabaseReference stepsReference = database.getReference("USERS")
+                .child(userId)
+                .child("STEPS");
+
+        StepsEntry stepsEntry = new StepsEntry(stepsGoal, currentSteps);
+
+        stepsReference.setValue(stepsEntry)
+                .addOnSuccessListener(aVoid ->
+                        Toast.makeText(context, "Steps updated successfully!", Toast.LENGTH_SHORT).show())
+                .addOnFailureListener(e ->
+                        Toast.makeText(context, "Error updating steps.", Toast.LENGTH_SHORT).show());
+    }
+    public static void addWaterIntake(String userId, int waterIntake) {
+        // Get reference to USERS -> <userId> -> WATERTRACKER node
+        DatabaseReference waterReference = database.getReference("USERS")
+                .child(userId)
+                .child("WATERTRACKER");
+
+        // Create a WaterTrackerEntry instance with the current water intake
+        WaterTrackerEntry waterTrackerEntry = new WaterTrackerEntry(waterIntake);
+
+        waterReference.setValue(waterTrackerEntry)
+                .addOnSuccessListener(aVoid ->
+                        Toast.makeText(context, "Water intake updated successfully!", Toast.LENGTH_SHORT).show())
+                .addOnFailureListener(e ->
+                        Toast.makeText(context, "Error updating water intake.", Toast.LENGTH_SHORT).show());
+    }
 }

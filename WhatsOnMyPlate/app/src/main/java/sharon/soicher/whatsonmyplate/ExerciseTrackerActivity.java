@@ -11,6 +11,8 @@ import android.widget.ArrayAdapter;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,7 +40,33 @@ public class ExerciseTrackerActivity extends AppCompatActivity {
         setupSpinner();
 
         btnCalculateCalories.setOnClickListener(v -> calculateCalories());
-        btnSaveExercise.setOnClickListener(v -> saveExerciseLog());
+        btnSaveExercise.setOnClickListener(v -> {
+            String exerciseType = spinnerExerciseType.getSelectedItem().toString();
+            String durationStr = etDuration.getText().toString().trim();
+            String caloriesStr = etCaloriesBurned.getText().toString().trim();
+
+            if (durationStr.isEmpty() || caloriesStr.isEmpty()) {
+                Toast.makeText(this, "Complete the exercise details before saving.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            int durationTime = Integer.parseInt(durationStr);
+            int caloriesBurned = Integer.parseInt(caloriesStr);
+
+            // Obtain userId from FirebaseAuth.
+            String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+            // Save this exercise log in Firebase.
+            Firebase_Helper.addExercise(userId, exerciseType, durationTime, caloriesBurned);
+
+            // Update the local exercise history and log.
+            exerciseHistory.add(exerciseType + " - " + durationStr + " min - " + caloriesStr + " kcal burned");
+            updateExerciseLog();
+
+            Toast.makeText(this, "Exercise logged & updated on Home Page!", Toast.LENGTH_SHORT).show();
+            finish(); // Return to Home Page after saving
+        });
+
     }
 
     private void setupSpinner() {

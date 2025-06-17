@@ -145,14 +145,6 @@
             android:layout_marginBottom="16dp"/>
 
         <!-- Additional Input Methods -->
-        <Button
-            android:id="@+id/btn_scan_food"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Scan Food (Barcode)"
-            android:backgroundTint="#00C853"
-            android:textColor="#FFFFFF"
-            android:layout_marginBottom="16dp"/>
 
         <Button
             android:id="@+id/btnSnapshot"

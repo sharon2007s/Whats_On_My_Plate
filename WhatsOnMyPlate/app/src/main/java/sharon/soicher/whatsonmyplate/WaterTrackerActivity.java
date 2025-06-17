@@ -9,6 +9,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,6 +60,12 @@ public class WaterTrackerActivity extends AppCompatActivity {
     }
 
     private void saveProgress() {
+        // Obtain user ID from FirebaseAuth
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        // Save current water intake in Firebase
+        Firebase_Helper.addWaterIntake(userId, currentIntake);
+
         Toast.makeText(this, "Water intake saved & updated on Home Page!", Toast.LENGTH_SHORT).show();
         finish(); // Close activity, returning to Home Page
     }
