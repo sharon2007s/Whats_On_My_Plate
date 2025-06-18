@@ -182,6 +182,8 @@ public class FoodEntryActivity extends AppCompatActivity {
     private void fetchNutritionData() {
         String foodName = etFoodName.getText().toString().trim();
         String portionSizeStr = etPortionSize.getText().toString().trim();
+        String mealType = spinnerMealType.getSelectedItem().toString();
+
 
         if (foodName.isEmpty()) {
             etFoodName.setError("Enter an ingredient");
@@ -216,7 +218,7 @@ public class FoodEntryActivity extends AppCompatActivity {
                     tvNutritionInfo.setVisibility(View.VISIBLE);
                     tvNutritionInfo.setText(foodData.toString());
 
-                    Firebase_Helper.addMealFromAPI(userId, foodData);
+                    Firebase_Helper.addMealFromAPI(userId, foodData, mealType);
                     Toast.makeText(FoodEntryActivity.this, "Meal data saved automatic",Toast.LENGTH_SHORT).show();
                 });
             }

@@ -71,7 +71,7 @@
                     android:id="@+id/breakfast_button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Breakfast: 350 kcal"
+                    android:text="Breakfast"
                     android:backgroundTint="#00C853"
                     android:textColor="#FFFFFF"
                     android:layout_marginBottom="8dp" />
@@ -80,7 +80,7 @@
                     android:id="@+id/lunch_button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Lunch: 500 kcal"
+                    android:text="Lunch"
                     android:backgroundTint="#00C853"
                     android:textColor="#FFFFFF"
                     android:layout_marginBottom="8dp" />
@@ -89,7 +89,7 @@
                     android:id="@+id/dinner_button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Dinner: 400 kcal"
+                    android:text="Dinner"
                     android:backgroundTint="#00C853"
                     android:textColor="#FFFFFF"
                     android:layout_marginBottom="8dp" />
@@ -98,7 +98,7 @@
                     android:id="@+id/snacks_button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Snacks: 150 kcal"
+                    android:text="Snacks"
                     android:backgroundTint="#00C853"
                     android:textColor="#FFFFFF" />
             </LinearLayout>
@@ -115,7 +115,7 @@
                     android:id="@+id/exercise_button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Exercise: 30 mins"
+                    android:text="Exercise"
                     android:backgroundTint="#00C853"
                     android:textColor="#FFFFFF"
                     android:layout_marginBottom="8dp" />
@@ -124,7 +124,7 @@
                     android:id="@+id/steps_button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Steps: 2,000"
+                    android:text="Steps"
                     android:backgroundTint="#00C853"
                     android:textColor="#FFFFFF"
                     android:layout_marginBottom="8dp" />
@@ -133,7 +133,7 @@
                     android:id="@+id/water_button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Water: 1.5 L"
+                    android:text="Water"
                     android:backgroundTint="#00C853"
                     android:textColor="#FFFFFF" />
 

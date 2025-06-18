@@ -4,6 +4,7 @@ import android.content.Context;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -11,6 +12,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.MutableData;
+import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.concurrent.CompletableFuture;
@@ -127,8 +130,8 @@ public class Firebase_Helper {
 
         return future;
     }
-    public static void addMealFromAPI(String userId, NutritionAPI.FoodNutritionData foodData) {
-        DatabaseReference mealsReference = database.getReference("USERS").child(userId).child("MEALS");
+    public static void addMealFromAPI(String userId, NutritionAPI.FoodNutritionData foodData, String mealType) {
+        DatabaseReference mealsReference = database.getReference("USERS").child(userId).child("MEALS").child(mealType);
 
         String mealId = mealsReference.push().getKey(); // Generate unique meal ID
         if (mealId != null) {
@@ -136,8 +139,9 @@ public class Firebase_Helper {
                     (int) foodData.getCalories(), (int) foodData.getProtein(),
                     (int) foodData.getFat(), (int) foodData.getCarbs());
             mealsReference.child(mealId).setValue(mealEntry)
-                    .addOnSuccessListener(aVoid -> Toast.makeText(context, "Meal saved!", Toast.LENGTH_SHORT).show())
-                    .addOnFailureListener(e -> Toast.makeText(context, "Error saving meal", Toast.LENGTH_SHORT).show());
+                    .addOnSuccessListener(aVoid -> Toast.makeText(context, "Meal saved!", Toast.LENGTH_SHORT).show());
+            updateCalorieConsumed(userId, (int) foodData.getCalories());
+
         }
     }
     public static void addExercise(String userId, String exerciseType, int durationTime, int caloriesBurned) {
@@ -189,5 +193,31 @@ public class Firebase_Helper {
                         Toast.makeText(context, "Water intake updated successfully!", Toast.LENGTH_SHORT).show())
                 .addOnFailureListener(e ->
                         Toast.makeText(context, "Error updating water intake.", Toast.LENGTH_SHORT).show());
+    }
+
+    public static void updateCalorieConsumed(String userId, int addedCalories) {
+        // Reference to the cumulative calorie count for the user
+        DatabaseReference totalRef = database.getReference("USERS")
+                .child(userId)
+                .child("calorieConsumed");
+
+        totalRef.runTransaction(new Transaction.Handler() {
+            @NonNull
+            @Override
+            public Transaction.Result doTransaction(@NonNull MutableData currentData) {
+                Integer currentTotal = currentData.getValue(Integer.class);
+                if (currentTotal == null) {
+                    currentData.setValue(addedCalories);
+                } else {
+                    currentData.setValue(currentTotal + addedCalories);
+                }
+                return Transaction.success(currentData);
+            }
+
+            @Override
+            public void onComplete(@Nullable DatabaseError error, boolean committed, @Nullable DataSnapshot currentData) {
+                // Optionally handle errors or log the successful update here.
+            }
+        });
     }
 }
