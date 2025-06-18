@@ -16,6 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Enter Notification Title"
+            android:textColor="#FFFFFF"
             android:minHeight="48dp" />
 
         <!-- Location Field -->
@@ -24,6 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Enter Location"
+            android:textColor="#FFFFFF"
             android:minHeight="48dp" />
 
         <!-- Start Time Field -->
@@ -56,6 +58,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Schedule Notification"
+            android:backgroundTint="#00C853"
+            android:textColor="#FFFFFF"
             android:layout_marginTop="16dp" />
 
     </LinearLayout>

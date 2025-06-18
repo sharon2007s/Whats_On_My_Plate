@@ -19,6 +19,9 @@
             android:name=".BluetoothShareActivity"
             android:exported="false" />
         <activity
+            android:name=".ProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".StepsTrackerActivity"
             android:exported="false" />
         <activity

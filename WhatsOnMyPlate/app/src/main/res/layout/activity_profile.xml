@@ -1,4 +1,5 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/black"> <!-- ✅ Black Background -->
@@ -45,32 +46,6 @@
             android:minHeight="48dp"
             android:textColor="@android:color/white" />
 
-        <Spinner
-            android:id="@+id/gender_spinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="48dp" />
-
-        <Spinner
-            android:id="@+id/goals_spinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="48dp" />
-
-        <Spinner
-            android:id="@+id/diet_spinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="48dp" />
-
-        <Switch
-            android:id="@+id/unit_switch"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="48dp"
-            android:text="Use Metric Units"
-            android:textColor="@android:color/white" />
-
         <Button
             android:id="@+id/save_button"
             android:layout_width="match_parent"
@@ -86,5 +61,14 @@
             android:text="Recalculate Calorie Budget"
             android:backgroundTint="#00C853"
             android:textColor="#FFFFFF"/>
+        <Button
+            android:id="@+id/btn_logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Log Out"
+            android:backgroundTint="#D32F2F"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="16dp"/>
+
     </LinearLayout>
 </ScrollView>
