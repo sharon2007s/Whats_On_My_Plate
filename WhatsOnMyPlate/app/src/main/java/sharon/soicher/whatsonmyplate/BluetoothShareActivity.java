@@ -97,6 +97,9 @@ public class BluetoothShareActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        //בפעולה זו נבנה מסנן שהפעולה שלו היא BluetoothDevice.ACTION_FOUND פעולה זו
+        // מתרחשת כאשר בזמן סריקת Bluetooth מתגלה מכשיר Bluetooth חדש.
+        // המסנן מגדיר את סוג האירוע שהבלוק שבו אנחנו מעוניינים לקבל.
         IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
         registerReceiver(bluetoothReceiver, filter);
     }

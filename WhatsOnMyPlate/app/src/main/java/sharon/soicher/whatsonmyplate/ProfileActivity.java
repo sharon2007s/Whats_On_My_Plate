@@ -115,7 +115,7 @@ public class ProfileActivity extends AppCompatActivity {
         String goals = goalsSpinner.getSelectedItem().toString();
 
         // Create and update the profile object
-        userProfile = new UserProfile(name, age, gender, height, weight, goals);
+        userProfile = new UserProfile(name, age, gender, height, weight,  goals);
         databaseReference.child("profile").setValue(userProfile)
                 .addOnSuccessListener(aVoid ->
                         Toast.makeText(ProfileActivity.this, "Profile updated!", Toast.LENGTH_SHORT).show())
@@ -135,15 +135,15 @@ public class ProfileActivity extends AppCompatActivity {
         Toast.makeText(this, "New Calorie Budget: " + calorieBudget + " kcal", Toast.LENGTH_LONG).show();
     }
 
-    // Optional: Helper method to set spinner selection to a specific value.
-    /*
-    private void setSpinnerToValue(Spinner spinner, String value) {
-        for (int i = 0; i < spinner.getCount(); i++) {
-            if (spinner.getItemAtPosition(i).toString().equalsIgnoreCase(value)) {
-                spinner.setSelection(i);
-                break;
-            }
+// Optional: Helper method to set spinner selection to a specific value.
+/*
+private void setSpinnerToValue(Spinner spinner, String value) {
+    for (int i = 0; i < spinner.getCount(); i++) {
+        if (spinner.getItemAtPosition(i).toString().equalsIgnoreCase(value)) {
+            spinner.setSelection(i);
+            break;
         }
     }
-    */
+}
+*/
 }

@@ -3,14 +3,13 @@ package sharon.soicher.whatsonmyplate;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.View;
-import android.widget.*;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.*;
-
-import java.util.HashMap;
 import java.util.concurrent.CompletableFuture;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -22,8 +21,7 @@ public class RegisterActivity extends AppCompatActivity {
     private Firebase_Helper helper;
     private Utilities utilities;
 
-    private void init()
-    {
+    private void init() {
         firstNameET = findViewById(R.id.register_first_name);
         lastNameET = findViewById(R.id.register_last_name);
         ageET = findViewById(R.id.register_age);
@@ -44,8 +42,8 @@ public class RegisterActivity extends AppCompatActivity {
 
         helper = new Firebase_Helper(RegisterActivity.this);
         utilities = new Utilities();
-
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,7 +74,6 @@ public class RegisterActivity extends AppCompatActivity {
         if (!weightStr.isEmpty()) {
             weight = Float.parseFloat(weightStr);
         }
-
         if (!heightStr.isEmpty()) {
             height = Float.parseFloat(heightStr);
         }
@@ -87,7 +84,6 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
         StringBuilder goalsBuilder = new StringBuilder();
-
         if (loseWeightCB.isChecked()) goalsBuilder.append("Lose or gain weight, ");
         if (improveCompositionCB.isChecked()) goalsBuilder.append("Improve body composition, ");
         if (beFitCB.isChecked()) goalsBuilder.append("Become more fit, ");
@@ -95,22 +91,27 @@ public class RegisterActivity extends AppCompatActivity {
         if (eatBetterCB.isChecked()) goalsBuilder.append("Eat better, ");
         if (feelBetterCB.isChecked()) goalsBuilder.append("Feel better");
 
-// Convert to String
+        // Convert StringBuilder to String
         String goals = goalsBuilder.toString();
+
+        // Combine first and last name into one name field.
         String name = String.format("%s %s", firstName, lastName);
 
+        // Create a UserProfile instance using the six-parameter constructor.
         UserProfile profile = new UserProfile(name, age, gender, weight, height, goals);
 
         CompletableFuture<String> registerFuture = helper.Register(profile, email, password);
 
         registerFuture.thenAccept(uid -> {
-            utilities.make_snackbar(RegisterActivity.this, "succeed");
-
+            utilities.make_snackbar(RegisterActivity.this, "Registration succeeded");
+            //העברת מידע וid של המשתמש למסך הבית.
+            // העברה זו נעשת בשימוש Explicit intent
+            //  שבו מציינים במפורש לאיזו Activity רוצים לעבור ולאחר מכן מוסיפים נתונים באמצעות PutExtra
             Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
-            intent.putExtra("Uid", uid);
+            intent.putExtra("Uid", uid);// העברת Uid כערך מפתח (key-value)
             startActivity(intent);
         }).exceptionally(ex -> {
-            utilities.make_snackbar(RegisterActivity.this,ex.getMessage());
+            utilities.make_snackbar(RegisterActivity.this, ex.getMessage());
             return null;
         });
     }
