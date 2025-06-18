@@ -112,7 +112,6 @@
 
     </LinearLayout>
 
-
         <!-- Manual Entry Button -->
         <Button
             android:id="@+id/btn_manual_entry"

@@ -1,8 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/scrollView"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@android:color/black"> <!-- ✅ Black Background -->
+    android:background="@color/black"
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -10,65 +10,115 @@
         android:orientation="vertical"
         android:padding="16dp">
 
+        <!-- Name Input -->
         <EditText
             android:id="@+id/name_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/darker_gray"
             android:hint="Name"
-            android:minHeight="48dp"
-            android:textColor="@android:color/white" />
+            android:textColor="#FFFFFF"
+            android:background="@color/grey"
+            android:minHeight="48dp" />
 
+        <!-- Age Input -->
         <EditText
             android:id="@+id/age_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/darker_gray"
             android:hint="Age"
-            android:minHeight="48dp"
-            android:textColor="@android:color/white" />
+            android:inputType="number"
+            android:textColor="#FFFFFF"
+            android:background="@color/grey"
+            android:minHeight="48dp" />
 
+        <!-- Height Input -->
         <EditText
             android:id="@+id/height_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/darker_gray"
-            android:hint="Height"
-            android:minHeight="48dp"
-            android:textColor="@android:color/white" />
+            android:hint="Height (cm)"
+            android:inputType="numberDecimal"
+            android:textColor="#FFFFFF"
+            android:background="@color/grey"
+            android:minHeight="48dp" />
 
+        <!-- Weight Input -->
         <EditText
             android:id="@+id/weight_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/darker_gray"
-            android:hint="Weight"
-            android:minHeight="48dp"
-            android:textColor="@android:color/white" />
+            android:hint="Weight (kg)"
+            android:inputType="numberDecimal"
+            android:textColor="#FFFFFF"
+            android:background="@color/grey"
+            android:minHeight="48dp" />
 
+        <!-- Gender Spinner -->
+        <Spinner
+            android:id="@+id/gender_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/gender_options"
+            android:textColor="#FFFFFF"
+            android:background="@color/grey"
+            android:minHeight="48dp" />
+
+        <!-- Goals Spinner -->
+        <Spinner
+            android:id="@+id/goals_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/goals_options"
+            android:textColor="#FFFFFF"
+            android:background="@color/grey"
+            android:minHeight="48dp" />
+
+        <!-- Diet Spinner -->
+        <Spinner
+            android:id="@+id/diet_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/diet_options"
+            android:textColor="#FFFFFF"
+            android:background="@color/grey"
+            android:minHeight="48dp" />
+
+        <!-- Unit Switch (for Metric/Imperial) -->
+        <Switch
+            android:id="@+id/unit_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/grey"
+            android:minHeight="48dp"
+            android:text="Metric/Imperial"
+            android:textColor="#455A64" />
+
+        <!-- Save Button -->
         <Button
             android:id="@+id/save_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Save"
             android:backgroundTint="#00C853"
-            android:textColor="#FFFFFF"/>
+            android:textColor="#FFFFFF"
+            android:text="Save Profile" />
 
+        <!-- Recalculate Calorie Budget Button -->
         <Button
             android:id="@+id/recalculate_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Recalculate Calorie Budget"
             android:backgroundTint="#00C853"
-            android:textColor="#FFFFFF"/>
+            android:textColor="#FFFFFF"
+            android:text="Recalculate Calorie Budget" />
+
+        <!-- Logout Button -->
         <Button
             android:id="@+id/btn_logout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Log Out"
-            android:backgroundTint="#D32F2F"
+            android:backgroundTint="#00C853"
             android:textColor="#FFFFFF"
-            android:layout_marginTop="16dp"/>
+            android:text="Logout" />
 
     </LinearLayout>
 </ScrollView>

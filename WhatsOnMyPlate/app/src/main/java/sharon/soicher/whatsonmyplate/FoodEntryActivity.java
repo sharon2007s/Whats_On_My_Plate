@@ -64,6 +64,7 @@ public class FoodEntryActivity extends AppCompatActivity {
     private TextView tvNutritionInfo;
     private ProgressBar progressBar;
 
+
     private NutritionAPI nutritionAPI;
 
     @Override
@@ -85,7 +86,6 @@ public class FoodEntryActivity extends AppCompatActivity {
         btnSaveFood = findViewById(R.id.btn_save_food);
         tvNutritionInfo = findViewById(R.id.tv_nutrition_info);
         progressBar = findViewById(R.id.progress_bar);
-
        // Button for taking a snapshot of the current screen
         btnSnapshot.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -312,4 +312,5 @@ private void saveFoodEntry() {
         Toast.makeText(this, "Food saved for " + mealType, Toast.LENGTH_SHORT).show();
         finish(); // Return to Home page after saving
     }
+
 }

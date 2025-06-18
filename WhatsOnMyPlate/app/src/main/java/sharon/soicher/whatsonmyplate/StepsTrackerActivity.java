@@ -22,7 +22,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class StepsTrackerActivity extends AppCompatActivity {
 
     private EditText etStepCount, etDailyGoal;
-    private Button btnManualEntry, btnGoogleFit, btnSaveSteps;
+    private Button btnManualEntry, btnSaveSteps;
     private TextView tvStepHistory, tvCurrentGoal;
 
     private int currentSteps = 0;

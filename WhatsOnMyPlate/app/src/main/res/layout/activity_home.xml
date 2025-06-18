@@ -21,6 +21,14 @@
             android:textSize="25dp"
             android:text="title" />
 
+        <TextView
+            android:id="@+id/calorieBudget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="25dp"
+            android:text="Calorie Budget: 2000" />
+
         <!-- Top Section: Calorie Budget Wheel -->
         <FrameLayout
             android:id="@+id/calorie_circle_container"
@@ -49,7 +57,6 @@
                 android:textSize="18sp"
                 android:layout_gravity="center" />
         </FrameLayout>
-
         <!-- Middle Section: Two columns for Meal Stats and Health Stats -->
         <LinearLayout
             android:id="@+id/stats_layout"
@@ -164,32 +171,24 @@
 
             <Button
                 android:id="@+id/btnProfile"
-                android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_width="199dp"
                 android:layout_height="wrap_content"
-                android:text="Profile"
+                android:layout_marginEnd="4dp"
+                android:layout_weight="1"
                 android:backgroundTint="#00C853"
-                android:textColor="#FFFFFF"
-                android:layout_marginEnd="4dp" />
+                android:text="Profile"
+                android:textColor="#FFFFFF" />
 
             <Button
                 android:id="@+id/bluethooth_share"
-                android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_width="198dp"
                 android:layout_height="wrap_content"
-                android:text="Bluethooth"
-                android:backgroundTint="#00C853"
-                android:textColor="#FFFFFF"
-                android:layout_marginEnd="4dp" />
-
-            <Button
-                android:id="@+id/weigh_in_button"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_marginEnd="4dp"
                 android:layout_weight="1"
                 android:backgroundTint="#00C853"
-                android:text="Weigh In"
+                android:text="Bluethooth"
                 android:textColor="#FFFFFF" />
+
         </LinearLayout>
 
     </LinearLayout>

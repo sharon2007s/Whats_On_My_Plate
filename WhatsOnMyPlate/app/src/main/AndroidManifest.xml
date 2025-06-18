@@ -4,6 +4,19 @@
 
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" /> <!-- AndroidManifest.xml -->
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <!-- For Android 12+ -->
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADVERTISE" />
+
+    <!-- For below Android 12 -->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
+    <!-- For accessing gallery -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <!-- For Android 13+ use: -->
+    <!-- <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" /> -->
 
     <application
         android:allowBackup="true"
